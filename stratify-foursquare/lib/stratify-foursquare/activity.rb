@@ -3,16 +3,15 @@ require 'stratify-foursquare/presenter'
 module Stratify
   module Foursquare
     class Activity < Stratify::Activity
-      # field :guid, :type => Integer
-      # field :title
-      # field :description
-      # field :username
-      # field :activity_type
-      # field :event_type
-      # field :distance_in_miles, :type => Float
-      # field :time_in_seconds, :type => Integer
-      # field :starting_latitude, :type => BigDecimal
-      # field :starting_longitude, :type => BigDecimal
+      field :checkin_id, :type => String
+      field :venue_id, :type => String
+      field :venue_name, :type => String
+      field :venue_street, :type => String
+      field :venue_city, :type => String
+      field :venue_state, :type => String
+      field :venue_country, :type => String
+      field :venue_latitude, :type => BigDecimal
+      field :venue_longitude, :type => BigDecimal
 
       natural_key :checkin_id
 

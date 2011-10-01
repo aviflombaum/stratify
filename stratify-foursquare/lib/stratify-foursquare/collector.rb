@@ -1,4 +1,3 @@
-require 'open-uri'
 require 'stratify-foursquare/query'
 
 module Stratify
@@ -6,7 +5,7 @@ module Stratify
     class Collector < Stratify::Collector
       source "Foursquare"
   
-      configuration_fields :user_id => {:type => :string}
+      configuration_fields :oauth_token => {:type => :string}
 
       configuration_instructions %q[
         TODO
@@ -17,7 +16,7 @@ module Stratify
       end
 
       def query
-        Stratify::Foursquare::Query.new(user_id)
+        Stratify::Foursquare::Query.new(oauth_token)
       end
     end
   end

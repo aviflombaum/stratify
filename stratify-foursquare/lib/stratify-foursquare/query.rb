@@ -1,12 +1,12 @@
-require 'foursquare'
+require 'foursquare2'
 
 module Stratify
   module Foursquare
     class Query
-      attr_reader :user_id
+      attr_reader :oauth_token
 
-      def initialize(user_id)
-        @user_id = user_id
+      def initialize(oauth_token)
+        @oauth_token = oauth_token
       end
 
       def activities
@@ -16,20 +16,25 @@ module Stratify
       private
 
       def raw_activities
-        client = Foursquare2::Client.new(:oauth_token => 'TODO')
-        client.user(@user_id)
-        client.user_checkins
+        client = Foursquare2::Client.new(:oauth_token => oauth_token)
+        client.user_checkins.items
       end
 
       def build_activity_from_raw_data(data)
+        venue = data.venue
+        venue_location = venue.location
+        
         Stratify::Foursquare::Activity.new({
-          # :checkin_id => extract_id_from_checkin_url(data.url),
-          # :spot_name => data.spot.name,
-          # :spot_city_state => data.spot.city_state,
-          # :spot_latitude => data.spot.lat,
-          # :spot_longitude => data.spot.lng,
-          # :message => data.message,
-          # :created_at => data.created_at
+          :checkin_id => data.id,
+          :venue_id => venue.id,
+          :venue_name => venue.name,
+          :venue_street => venue_location.address,
+          :venue_city => venue_location.city,
+          :venue_state => venue_location.state,
+          :venue_country => venue_location.country,
+          :venue_latitude => venue_location.lat,
+          :venue_longitude => venue_location.lng,
+          :created_at => Time.now # TODO Time.at(data.created_at)
         })
       end
     end
