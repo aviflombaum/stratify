@@ -22,10 +22,6 @@ module Stratify
         <p class="summary"><%= summary %></p>
       ]
       
-      def permalink
-        "https://foursquare.com/user/#{user_id}/checkin/#{checkin_id}"
-      end
-      
       def presenter
         Stratify::Foursquare::Presenter.new(self)
       end
