@@ -18,18 +18,17 @@ module Stratify
 
       validates_presence_of :venue_id, :venue_name
 
-      # template %q[
-      #   <p class="summary"><%= summary %></p>
-      #   <p class="details"><%= details %></p>
-      # ]
-      # 
-      # def permalink
-      #   "http://connect.garmin.com/activity/#{guid}"
-      # end
-      # 
-      # def presenter
-      #   Stratify::Foursquare::Presenter.new(self)
-      # end
+      template %q[
+        <p class="summary"><%= summary %></p>
+      ]
+      
+      def permalink
+        "https://foursquare.com/user/#{user_id}/checkin/#{checkin_id}"
+      end
+      
+      def presenter
+        Stratify::Foursquare::Presenter.new(self)
+      end
     end
   end
 end

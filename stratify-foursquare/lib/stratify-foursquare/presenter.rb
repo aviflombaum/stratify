@@ -1,38 +1,25 @@
 module Stratify
   module Foursquare
     class Presenter
-      delegate :title, :activity_type, :description, :to => :@activity
+      delegate :venue_name, :venue_city, :venue_state, :to => :@activity
       
       def initialize(activity)
         @activity = activity
       end
       
       def summary
-        "#{activity_type}: #{title}"
-      end
-      
-      def details
-        join_fields_with_separator distance, time, description
-      end
-
-      def distance
-        "%0.2f miles" % @activity.distance_in_miles
-      end
-
-      def time
-        minutes = @activity.time_in_seconds / 60
-        seconds = @activity.time_in_seconds % 60
-        "#{minutes} minutes, #{seconds} seconds"
+        summary_with_venue_name = "Checked in at <strong>#{venue_name}</strong>"
+        has_location_info? ? "#{summary_with_venue_name} in <strong>#{location}</strong>" : summary_with_venue_name
       end
       
       private
-      
-      def separator
-        "\u2022"
+
+      def location
+        [venue_city, venue_state].reject(&:blank?).join(", ")
       end
       
-      def join_fields_with_separator(*fields)
-        fields.reject(&:blank?).join(" #{separator} ")
+      def has_location_info?
+        !(venue_city.blank? && venue_state.blank?)
       end
     end
   end

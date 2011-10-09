@@ -1,12 +1,10 @@
 require 'spec_helper'
 
 describe Stratify::Foursquare::Activity do
-  pending
-  
-  # describe "#permalink" do
-  #   it "returns the URL for this activity on Garmin Connect" do
-  #     activity = Stratify::Garmin::Activity.new(:guid => 12345678)
-  #     activity.permalink.should == "http://connect.garmin.com/activity/12345678"
-  #   end
-  # end
+  describe "#permalink" do
+    it "returns the URL for this checkin on Foursquare" do
+      activity = Stratify::Foursquare::Activity.new(:user_id => "1234567", :checkin_id => "4e85118c6c25709c5f998be5")
+      activity.permalink.should == "https://foursquare.com/user/1234567/checkin/4e85118c6c25709c5f998be5"
+    end
+  end
 end
