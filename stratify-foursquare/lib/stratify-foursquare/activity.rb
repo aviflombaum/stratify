@@ -9,13 +9,14 @@ module Stratify
       field :venue_street, :type => String
       field :venue_city, :type => String
       field :venue_state, :type => String
+      field :venue_postal_code, :type => String
       field :venue_country, :type => String
       field :venue_latitude, :type => BigDecimal
       field :venue_longitude, :type => BigDecimal
 
       natural_key :checkin_id
 
-      # validates_presence_of :guid, :title, :username, :activity_type, :event_type, :distance_in_miles, :time_in_seconds
+      validates_presence_of :venue_id, :venue_name
 
       # template %q[
       #   <p class="summary"><%= summary %></p>

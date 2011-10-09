@@ -31,6 +31,7 @@ module Stratify
           :venue_street => venue_location.address,
           :venue_city => venue_location.city,
           :venue_state => venue_location.state,
+          :venue_postal_code => venue_location.postalCode,
           :venue_country => venue_location.country,
           :venue_latitude => venue_location.lat,
           :venue_longitude => venue_location.lng,
