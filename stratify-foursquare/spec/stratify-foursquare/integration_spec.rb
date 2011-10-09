@@ -36,7 +36,7 @@ describe "stratify-foursquare" do
       :venue_country => "USA",
       :venue_latitude => 29.942296295356602,
       :venue_longitude => -90.06738245487213,
-      # :created_at => Time.parse("Thu, 29 Sep 2011 19:47:08 CDT") # TODO
+      :created_at => Time.parse("Thu, 29 Sep 2011 19:47:08 CDT")
     ).should exist
 
     # TODO Add assertion for very simple checkin

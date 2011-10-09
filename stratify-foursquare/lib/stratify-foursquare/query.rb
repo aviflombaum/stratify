@@ -34,7 +34,7 @@ module Stratify
           :venue_country => venue_location.country,
           :venue_latitude => venue_location.lat,
           :venue_longitude => venue_location.lng,
-          :created_at => Time.now # TODO Time.at(data.created_at)
+          :created_at => Time.at(data.createdAt)
         })
       end
     end
