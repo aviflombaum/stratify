@@ -24,8 +24,6 @@ describe "stratify-foursquare" do
     collector = Stratify::Foursquare::Collector.create!(:oauth_token => 'NEFB1MA3VGSHFEGJ4YW0JESYWRXMREUEMZCRGGYO34XECCGK') # TODO anonymize
     collector.run
 
-    Stratify::Foursquare::Activity.all.each {|a| p a}
-
     Stratify::Foursquare::Activity.where(
       :checkin_id => "4e85118c6c25709c5f998be5",
       :venue_id => "4ba41d75f964a520108338e3",
